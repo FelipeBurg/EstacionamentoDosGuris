@@ -4,32 +4,34 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Estacionamento {
-    private String nome;
     private LocalTime abertura;
     private LocalTime fechamento;
     private ArrayList<Automovel> autos;
 
-    public Estacionamento() {
-        this.nome = "Estacionamento dos Guri";
-        this.abertura = LocalTime.of(8, 0);  // 08:00
-        this.fechamento = LocalTime.of(2, 0); // 02:00 (2 da manhã do dia seguinte)
-        this.autos = new ArrayList<>(); // Inicializa a lista de automóveis
+    public Estacionamento(String nome, LocalTime abertura, LocalTime fechamento) {
+        this.abertura = null;
+        this.fechamento = null;
+        this.autos = new ArrayList<Automovel>();
+    }
+
+    public void adicionarAutomovel(Automovel automovel) {
+        autos.add(automovel);
+    }
+    public ArrayList<Automovel> getAutomoves() {
+        return autos;
     }
     public LocalTime getAbertura() {
         return abertura;
     }
-    public void adicionarAutomovel(Automovel automovel) {
-        autos.add(automovel);
+    public LocalTime getFechamento() {
+        return fechamento;
     }
-
-    public Automovel buscarAutomovelPorPlaca(String placa) {
+    public Automovel buscarPorPlaca(String placa) {
         for (Automovel automovel : autos) {
-            if (automovel.getPlaca().equalsIgnoreCase(placa)) {
-                return automovel;  // Retorna o automóvel se a placa for encontrada
+            if (automovel.getPlaca().equals(placa)) {
+                return automovel;
             }
         }
-        return null;  // Retorna null se não encontrar
+        return null;
     }
-
-
 }

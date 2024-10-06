@@ -9,14 +9,21 @@ public class Ticket {
     private LocalDateTime horaEntrada;
     private LocalDateTime horaSaida;
     private Duration tempoEstadia;
-    private double valorCobrado;
+    private double valorTicket;
 
     public Ticket() {
         this.codigo = UUID.randomUUID().toString();
         this.horaEntrada = LocalDateTime.now();
-        this.horaSaida = null;  // A hora de saída ainda não foi registrada
-        this.tempoEstadia = Duration.ZERO;
-        this.valorCobrado = 0;
+        this.horaSaida = null;
+        this.tempoEstadia = null;
+    }
+
+    public void setTempoEstadia(Duration tempoEstadia) {
+        this.tempoEstadia = tempoEstadia;
+    }
+
+    public void setHoraSaida(LocalDateTime horaSaida) {
+        this.horaSaida = horaSaida;
     }
 
     public String getCodigo() {
@@ -35,20 +42,10 @@ public class Ticket {
         return tempoEstadia;
     }
 
-    public double getValorCobrado() {
-        return valorCobrado;
+    public double getValorTicket() {
+        return valorTicket;
     }
-
-    public void registrarSaida(LocalDateTime horaSaida) {
-        if (horaSaida.isBefore(horaEntrada)) {
-            System.out.println("Erro: a hora de saída não pode ser anterior à hora de entrada.");
-            return;
-        }
-        if (this.horaSaida != null) {
-            System.out.println("Erro: a saída já foi registrada.");
-            return;
-        }
-        this.horaSaida = horaSaida;  // Define a hora de saída passada como parâmetro
-        this.tempoEstadia = Duration.between(horaEntrada, this.horaSaida);  // Calcula a duração entre entrada e saída
+    public void setValorTicket(double valorTicket) {
+        this.valorTicket = valorTicket;
     }
 }
