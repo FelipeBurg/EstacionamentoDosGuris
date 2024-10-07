@@ -17,7 +17,7 @@ public class Estacionamento {
     public void adicionarAutomovel(Automovel automovel) {
         autos.add(automovel);
     }
-    public ArrayList<Automovel> getAutomoves() {
+    public ArrayList<Automovel> getAutomoveis() {
         return autos;
     }
     public LocalTime getAbertura() {
