@@ -100,15 +100,14 @@ public class Aplicacao {
             System.out.println("Automóvel não encontrado.");
             return;
         }
-
-        // Ler a hora de saída do usuário
-        LocalDateTime horaSaida = lerDataHoraManual();
+        
 
         Ticket ultimoTicket = automovel.getTickets().get(automovel.getTickets().size() - 1);
         if (ultimoTicket.getHoraSaida() != null) {
             System.out.println("Este automóvel já saiu do estacionamento.");
             return;
         }
+        LocalDateTime horaSaida = lerDataHoraManual();
 
         // Definir a hora de saída no último ticket
         ultimoTicket.setHoraSaida(horaSaida);
