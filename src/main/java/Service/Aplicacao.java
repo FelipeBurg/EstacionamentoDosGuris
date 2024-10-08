@@ -26,7 +26,7 @@ public class Aplicacao {
             try {
                 System.out.println("1: Registrar Entrada");
                 System.out.println("2: Registrar Saída");
-                System.out.println("3: Imprimir Entity.Ticket");
+                System.out.println("3: Imprimir Ticket");
                 System.out.println("4: Exibir Carros");
                 System.out.println("5: Sair");
                 opcao = scanner.nextInt();
