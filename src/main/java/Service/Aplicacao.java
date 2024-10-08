@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Aplicacao {
     private Scanner scanner = new Scanner(System.in);
     private Estacionamento estacionamento;
-    private CalculoTarifa calculoTarifa = new CalculoTarifa(); // Instância de CalculoTarifa
+    private CalculoTarifa calculoTarifa = new CalculoTarifa(); // Instância de Service.CalculoTarifa
 
     public Aplicacao(Estacionamento estacionamento) {
         this.estacionamento = estacionamento; // Certifica-se de inicializar a variável
@@ -26,7 +26,7 @@ public class Aplicacao {
             try {
                 System.out.println("1: Registrar Entrada");
                 System.out.println("2: Registrar Saída");
-                System.out.println("3: Imprimir Ticket");
+                System.out.println("3: Imprimir Entity.Ticket");
                 System.out.println("4: Exibir Carros");
                 System.out.println("5: Sair");
                 opcao = scanner.nextInt();
@@ -115,13 +115,13 @@ public class Aplicacao {
         Duration duracao = Duration.between(ultimoTicket.getHoraEntrada(), ultimoTicket.getHoraSaida());
         ultimoTicket.setTempoEstadia(duracao);
 
-        // Chama o método de cálculo de tarifa na classe CalculoTarifa
+        // Chama o método de cálculo de tarifa na classe Service.CalculoTarifa
         double valor = calculoTarifa.calcularValor(duracao, ultimoTicket.getHoraEntrada(), horaSaida, automovel.isVIP());
         ultimoTicket.setValorTicket(valor);
 
         System.out.println("Saída registrada com sucesso");
         try {
-            System.out.println("Imprimir Ticket? (s/n)");
+            System.out.println("Imprimir Entity.Ticket? (s/n)");
             String option = scanner.nextLine().trim().toLowerCase();
 
             if (option.equals("s")) {
@@ -156,7 +156,7 @@ public class Aplicacao {
             System.out.println("Data: " + ultimoTicket.getHoraSaida().format(formatter));
             System.out.println("Horário: " + ultimoTicket.getHoraSaida().format(timeFormatter));
             System.out.println("====== VALOR ========");
-            System.out.println("Valor a Pagar: R$ " + ultimoTicket.getValorTicket()+ "\n");
+            System.out.println("Valor a Pagar: R$ " + ultimoTicket.getValorTicket() + "\n");
         } else {
             System.out.println("O automóvel ainda está no estacionamento.");
         }
@@ -187,7 +187,7 @@ public class Aplicacao {
         return dataHoraSaida;
     }
 
-    public void exibirInformacoesCarro(){
+    public void exibirInformacoesCarro() {
         System.out.println("Digite a placa do carro:");
         String placa = scanner.nextLine();
         Automovel automovel = estacionamento.buscarPorPlaca(placa);
@@ -204,7 +204,7 @@ public class Aplicacao {
         }
     }
 
-    public void exibirCarros(){
+    public void exibirCarros() {
         ArrayList<Automovel> autos = estacionamento.getAutomoveis();
         for (Automovel automovel : autos) {
             System.out.println(automovel.getPlaca());
